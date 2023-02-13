@@ -1,0 +1,31 @@
+.form-horizontal{
+    height: 100%;
+    background-color: #d8a051;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARwAAACxCAMAAAAh3/JWAAAAA1BMVEUbqPBsarW2AAAASElEQVR4nO3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIALA8UNAAFusnLHAAAAAElFTkSuQmCC");
+
+    background-size:100% 100%;
+    width: 100%;
+}
+.form-control{
+    height: 45px;
+}
+.form-horizontal fieldset{
+    horiz-align: center;
+    margin-top: 10px;
+    font-size:large;
+    line-height: 3;
+}
+.main_header{
+    margin-top:0px ;
+}
+.main_header h1{
+    text-align: center;
+    color: white;
+    background-color: #29395f;
+}
+.form-group {
+
+}
+
+.add_back{
+}
