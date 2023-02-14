@@ -13,8 +13,8 @@ import java.io.IOException;
 
 import static com.jareer.bookshopwebsite.dao.UserDAO.check;
 
-@WebServlet(name = "AuthUserServlet", value = "/register")
-public class AuthUserServlet extends HttpServlet {
+@WebServlet(name = "RegisterUserServlet", value = "/register")
+public class RegisterUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("user/sign_up.jsp").forward(request, response);

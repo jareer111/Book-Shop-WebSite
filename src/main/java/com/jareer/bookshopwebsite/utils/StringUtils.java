@@ -1,4 +1,4 @@
-package dev.jlkesh.library.library.utils;
+package com.jareer.bookshopwebsite.utils;
 
 import jakarta.servlet.http.Part;
 import lombok.NonNull;

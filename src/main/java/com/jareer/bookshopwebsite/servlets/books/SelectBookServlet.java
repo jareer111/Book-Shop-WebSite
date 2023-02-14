@@ -3,9 +3,10 @@ package com.jareer.bookshopwebsite.servlets.books;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+
 import java.io.IOException;
 
-@WebServlet(name = "SelectBookServlet", value = "/SelectBookServlet")
+@WebServlet(name = "SelectBookServlet", value = "/selectBook")
 public class SelectBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <html>
 <head >
     <title>Add book</title>
@@ -57,30 +58,30 @@
 
             </div>
         </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="description" >Description</label>
+            <div class="col-md-4">
+            <textarea class="form-control" rows="3" id="description" name="description"
+                      placeholder="Write the description of the book here"  ></textarea>
+            </div>
+                <div class="invalid-feedback">
+            </div>
+        </div>
 
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="book_categorie">BOOK CATEGORY</label>
             <div class="col-md-4">
-                <select class="form-select"   aria-label="select example" style="margin-top: 30px" id="book_categorie"
+            <select class="form-select "   aria-label="select example" style="margin-top: 20px" id="book_categorie"
                         name="book_categorie">
                     <option value="0">Choose a category</option>
                     <c:forEach items="${categories}" var="category">
                         <option value="${category.getId()}">${category.getName()}</option>
                     </c:forEach>
                 </select>
-            </div>
+                </div>
         </div>
-
-
-        <!-- Textarea -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="book_description">BOOK DESCRIPTION</label>
-            <div class="col-md-4">
-                <textarea class="form-control" id="book_description" placeholder="BOOK DESCRIPTION" name="book_description"></textarea>
-            </div>
-        </div>
-
 
                 <!-- File Button -->
                 <div class="form-group">

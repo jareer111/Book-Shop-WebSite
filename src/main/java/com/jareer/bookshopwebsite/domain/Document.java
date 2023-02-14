@@ -1,4 +1,4 @@
-package dev.jlkesh.library.domains;
+package com.jareer.bookshopwebsite.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

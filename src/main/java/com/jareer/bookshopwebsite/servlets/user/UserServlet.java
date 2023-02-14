@@ -21,7 +21,7 @@ public class UserServlet extends HttpServlet {
         long totalCount = userDAO.totalCount();
         long pageCount = totalCount / size;
         long currentPage = page;
-        request.setAttribute("students", userDAO.findAll(page, size));
+        request.setAttribute("users", userDAO.findAll(page, size));
         request.setAttribute("pageCount", pageCount);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("hasPrevious", currentPage > 0);
@@ -29,7 +29,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("previous", page - 1);
         request.setAttribute("next", page + 1);
 //        response.setIntHeader("Refresh", 2);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/students/students.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user/users.jsp");
         dispatcher.forward(request, response);
     }
 

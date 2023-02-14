@@ -35,7 +35,7 @@ public class ImageUtils {
         BufferedImage originalImage = ImageIO.read(input);
         Image newResizedImage = originalImage.getScaledInstance(COVER_WIDTH, COVER_HEIGHT, Image.SCALE_DEFAULT);
         String s = target.getFileName().toString();
-        ImageIO.write(convertToBufferedImage(newResizedImage),StringUtils.getFileExtension(target.getFileName().toString()), target.toFile());
+        ImageIO.write(convertToBufferedImage(newResizedImage), StringUtils.getFileExtension(target.getFileName().toString()), target.toFile());
     }
 
     private static BufferedImage convertToBufferedImage(Image img) {

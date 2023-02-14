@@ -1,4 +1,4 @@
-package dev.jlkesh.library.config;
+package com.jareer.bookshopwebsite.config;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

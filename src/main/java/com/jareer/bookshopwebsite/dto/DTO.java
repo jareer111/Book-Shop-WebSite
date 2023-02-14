@@ -1,2 +1,5 @@
-package com.jareer.bookshopwebsite.dto;public class DTO {
+package com.jareer.bookshopwebsite.dto;
+
+public interface DTO {
+
 }

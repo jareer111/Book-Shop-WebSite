@@ -1,4 +1,4 @@
-package dev.jlkesh.library.domains;
+package com.jareer.bookshopwebsite.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class Category {
     private Integer id;
     private String name;
+    private boolean isDeleted;
 }

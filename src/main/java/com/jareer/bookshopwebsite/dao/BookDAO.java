@@ -1,56 +1,73 @@
-package dev.jlkesh.library.dao;
+package com.jareer.bookshopwebsite.dao;
 
-import dev.jlkesh.library.domains.Book;
+import com.jareer.bookshopwebsite.domain.Book;
+import com.jareer.bookshopwebsite.dto.BookDTO;
+import com.jareer.bookshopwebsite.dto.BookDetailsDTO;
+import com.jareer.bookshopwebsite.dto.DTO;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BookDAO extends DAO<Book, Integer> {
     public static final String INSERT_QUERY = """
-            insert into library1.books (
-                        title,
-                        author,
-                        category,
-                        page,
-                        publisher,
-                        published_at,
-                        cover_id,
-                        document_id
-            ) values (?, ?, ?, ?, ?, ?, ?, ?);""";
+            insert into library1.book(title,author,publisher,published_date,created_at,category_id,description, cover_id,document_id ) values (?, ?, ?, ?, ?, ?, ? ,? ,?);""";
+
+    private static final String SELECT_ALL = """
+            select b.id, b.title, b.author,b.description, b.views,b.likes, b.dislikes, b.downloads,b.publisher,
+             d.originalFileName as coverOriginalFileName ,d.generatedFileName as coverGeneratedFileName,d.fileSize as coverFileSize, 
+             d2.originalFileName as documentOriginalFileName ,d2.generatedFileName as documentGeneratedFileName,d2.fileSize as documentFileSize,
+              c.name as category 
+              from book b 
+             inner join document d on b.cover_id = d.id 
+             inner join document d2 on b.document_id = d2.id 
+             inner join category c on b.category_id = c.id;
+                        """;
     private static BookDAO instance;
 
-
     @Override
-    protected void save(Book book) {
+    public Book save(Book book) {
         Connection connection = getConnection();
         try (var pr = connection.prepareStatement(INSERT_QUERY)) {
             pr.setString(1, book.getTitle());
             pr.setString(2, book.getAuthor());
-            pr.setString(3, book.getCategory());
-            pr.setInt(4, book.getPages());
-            pr.setString(5, book.getPublisher());
-            pr.setString(6, book.getPublishedAt().toString());
-            pr.setInt(7, book.getCoverId());
-            pr.setInt(8, book.getDocumentId());
+            pr.setString(3, book.getPublisher());
+            pr.setTimestamp(4, Timestamp.valueOf(book.getPublishedDate()));
+            pr.setTimestamp(5, Timestamp.valueOf(book.getCreatedAt()));
+            pr.setInt(6, book.getCategoryId());
+            pr.setString(7, book.getDescription());
+            pr.setInt(8, book.getCoverId());
+            pr.setInt(9, book.getDocumentId());
             pr.execute();
-        } catch (SQLException e) {}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
-    protected boolean get(Integer integer) {
+    public DTO get(Integer integer) {
+        return null;
+    }
+
+    @Override
+    public List<BookDTO> getAll(Integer integer) {
+        return null;
+    }
+
+    @Override
+    public boolean update(Book book) {
         return false;
     }
 
     @Override
-    protected boolean update(Book book) {
-        return false;
-    }
-
-    @Override
-    protected boolean delete(Integer integer) {
+    public boolean delete(Integer integer) {
         return false;
     }
 
@@ -63,5 +80,37 @@ public class BookDAO extends DAO<Book, Integer> {
             }
         }
         return instance;
+    }
+
+    public List<BookDetailsDTO> findAll() {
+
+        Connection connection = getConnection();
+        List<BookDetailsDTO> books = new ArrayList<>();
+
+        try (var pr = connection.prepareStatement(SELECT_ALL)) {
+            ResultSet resultSet = pr.executeQuery();
+            while (resultSet.next()) {
+                books.add(BookDetailsDTO.builder().
+                        id(resultSet.getInt("id")).
+                        title(resultSet.getString("title")).
+                        author(resultSet.getString("author")).
+                        description(resultSet.getString("description")).
+                        likes(resultSet.getInt("likes")).
+                        dislikes(resultSet.getInt("dislikes")).
+                        views(resultSet.getInt("views")).
+                        category(resultSet.getString("category")).
+                        publisher(resultSet.getString("publisher")).
+                        coverOriginalFileName(resultSet.getString("coverOriginalFileName")).
+                        coverGeneratedFileName(resultSet.getString("coverGeneratedFileName")).
+                        coverFileSize((resultSet.getLong("coverFileSize") / 2 << 20) + "MB").
+                        documentOriginalFileName(resultSet.getString("documentOriginalFileName")).
+                        documentGeneratedFileName(resultSet.getString("documentGeneratedFileName")).
+                        documentFileSize((resultSet.getLong("documentFileSize") / 2 << 20) + "MB").
+                        build());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return books;
     }
 }

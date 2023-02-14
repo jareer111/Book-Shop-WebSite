@@ -16,11 +16,10 @@
 <body>
 <div class="row">
     <div class="col-md-10 offset-1">
-        <h1>Users List</h1>
-        <%--        <a href="/users/add" class="btn btn-success">Add</a>--%>
-        <button class="btn btn-success" data-bs-target="#addModalToggle" data-bs-toggle="modal">Add</button>
-        <nav aria-label="...">
-            <ul class="pagination mt-2">
+        <h1 style="text-align: center">Users List</h1>
+        <form class="align-content-center">
+        <nav aria-label="..." >
+            <ul class="pagination mt-6">
                 <c:if test="${hasPrevious}">
                     <li class="page-item">
                         <a class="page-link" href="?page=${previous}">Previous</a>
@@ -39,10 +38,11 @@
                 </c:if>
             </ul>
         </nav>
+        </form>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col" style="color: #0a53be">ID</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Is Active</th>
@@ -54,10 +54,13 @@
                 <tr>
                     <td>${counter=counter+1}</td>
                     <td>${user.getUsername()}</td>
-                    <td>${user.getemail()}</td>
-                    <td>${user.isActive()}</td>
-                    <td>${user.roles()}</td>
-
+                    <td>${user.getEmail()}</td>
+                    <td>${user.getIsActive()}</td>
+                    <td>
+                    <c:forEach items="${user.getRole()}" var="role">
+                        <td>${role}</td>
+                    </c:forEach>
+                    </td>
                     <td>
                         <button class="btn btn-warning" data-bs-target="#updateUserModal" data-bs-toggle="modal" onclick="update(${user.getId()})">Update</button> ||
                         <a class="btn btn-danger" href="/users/delete/${user.getId()}">Delete</a>

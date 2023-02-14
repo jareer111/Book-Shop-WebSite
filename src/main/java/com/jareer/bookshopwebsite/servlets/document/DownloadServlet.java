@@ -1,7 +1,7 @@
-package dev.jlkesh.library.servlets.document;
+package com.jareer.bookshopwebsite.servlets.document;
 
-import dev.jlkesh.library.dao.DocumentDAO;
-import dev.jlkesh.library.domains.Document;
+import com.jareer.bookshopwebsite.dao.DocumentDAO;
+import com.jareer.bookshopwebsite.domain.Document;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
