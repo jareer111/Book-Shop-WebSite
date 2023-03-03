@@ -15,7 +15,7 @@ public class MyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BookDAO bookDAO = BookDAO.getInstance();
         List<BookDetailsDTO> all = bookDAO.findAll();
-        System.out.println("all.get(1).getId() = " + all.get(1).getId());
+
         request.setAttribute("books", all);
         request.getRequestDispatcher("/addition/home2.jsp").forward(request, response);
     }
