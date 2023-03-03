@@ -164,7 +164,7 @@ public class UserDAO extends DAO<Users, Integer> {
             return "Username is required";
         }
 
-        if (confirmationPassword == null || confirmationPassword.isEmpty()) {
+        if (confirmationPassword == null || confirmationPassword.isBlank() || confirmationPassword.length() < 8) {
             return "Confirmation password is required";
         }
         if (!password.equals(confirmationPassword)) {
@@ -175,11 +175,11 @@ public class UserDAO extends DAO<Users, Integer> {
 
     public static String check(String email, String password) {
 
-        if (email == null || email.isEmpty()) {
+        if (email == null || email.isEmpty() || !email.matches("^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-]+)(\\.[a-zA-Z]{2,5}){1,2}$")) {
             return "Email is required";
         }
 
-        if (password == null || password.isEmpty()) {
+        if (password == null || password.isBlank() || password.length() < 8) {
             return "Password is required";
         }
         return null;

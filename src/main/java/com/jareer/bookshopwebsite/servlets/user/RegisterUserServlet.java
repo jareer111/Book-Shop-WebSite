@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 
@@ -17,6 +18,7 @@ import static com.jareer.bookshopwebsite.dao.UserDAO.check;
 public class RegisterUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("error", null);
         request.getRequestDispatcher("user/sign_up.jsp").forward(request, response);
 
     }
@@ -29,13 +31,14 @@ public class RegisterUserServlet extends HttpServlet {
         String confirmationPassword = request.getParameter("confirmation_password");
         String check = check(username, email, password, confirmationPassword);
 
-       // password = BCrypt.hashpw(password, BCrypt.gensalt());
+        String Bpassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
         if (check != null) {
             request.setAttribute("error", check);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/sign_up.jsp");
             requestDispatcher.forward(request, response);
         } else {
-            Users user = Users.builder().username(username).email(email).password(password).build();
+            Users user = Users.builder().username(username).email(email).password(Bpassword).build();
             UserDAO userDAO = UserDAO.getInstance();
             userDAO.save(user);
             response.sendRedirect("/main");

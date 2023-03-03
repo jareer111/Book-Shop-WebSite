@@ -8,11 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "BookGetServlet", value = "/books/get")
+@WebServlet(name = "BookGetServlet", value = "/books/get/*")
 public class BookGetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        request.getRequestDispatcher("/books/get.jsp").forward(request, response);
     }
 
     @Override

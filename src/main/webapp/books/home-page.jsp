@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -17,9 +18,8 @@
     <div id="navigation">
         <ul>
             <li><a href="#" class="active">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Promotions</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="/books/add">Add book</a></li>
+            <li><a href="/category/add">Add category</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Contacts</a></li>
         </ul>
@@ -29,8 +29,9 @@
     <!-- Login-details -->
     <div id="login-details">
         <p>Welcome, <a href="#" id="user">Guest</a> .</p>
-        <p><a href="#" class="cart"><img src="/resources/img/home-images/cart-icon.png" alt=""/></a>Shopping Cart (0) <a href="#"
-                                                                                                         class="sum">$0.00</a>
+        <p><a href="#" class="cart"><img src="/resources/img/home-images/cart-icon.png" alt=""/></a>Shopping Cart (0) <a
+                href="#"
+                class="sum">$0.00</a>
         </p>
     </div>
     <!-- End Login-details -->
@@ -72,30 +73,9 @@
             <li>
                 <h4>Categories</h4>
                 <ul>
-                    <li><a href="#">Lorem ipsum dolor</a></li>
-                    <li><a href="#">Morbi eget</a></li>
-                    <li><a href="#">Nulla egestas</a></li>
-                    <li><a href="#">Curabitur venenatis</a></li>
-                    <li><a href="#">Ut dictum purus</a></li>
-                    <li><a href="#">Curabitur imperdiet</a></li>
-                    <li><a href="#">Aliquam elementum</a></li>
-                </ul>
-            </li>
-            <li>
-                <h4>Authors</h4>
-                <ul>
-                    <li><a href="#">Lorem ipsum dolor</a></li>
-                    <li><a href="#">Morbi eget</a></li>
-                    <li><a href="#">Nulla egestas</a></li>
-                    <li><a href="#">Curabitur venenatis</a></li>
-                    <li><a href="#">Ut dictum purus</a></li>
-                    <li><a href="#">Curabitur imperdiet</a></li>
-                    <li><a href="#">Lorem ipsum dolor</a></li>
-                    <li><a href="#">Morbi eget</a></li>
-                    <li><a href="#">Nulla egestas</a></li>
-                    <li><a href="#">Curabitur venenatis</a></li>
-                    <li><a href="#">Ut dictum purus</a></li>
-                    <li><a href="#">Curabitur imperdiet</a></li>
+                    <c:forEach items="${categories}" var="category">
+                        <li><a href="#">${category.getName()}</a></li>
+                    </c:forEach>
                 </ul>
             </li>
         </ul>
@@ -113,7 +93,8 @@
                         <a href="#" class="info">
 								<span class="holder">
                                  <div class="image">
-                                  <img src="/download?filename=${book.getCoverGeneratedFileName()}" width="180" height="300"
+                                  <img src="/download?filename=${book.getCoverGeneratedFileName()}" width="180"
+                                       height="300"
                                        class="card-img-top" alt="${book.getCoverOriginalFileName()}" loading="lazy"/>
                                  </div>
                                     <span class="book-name">${book.getTitle()}</span>
@@ -121,7 +102,8 @@
 									<span class="description">Maecenas vehicula ante eu enim pharetra<br/>scelerisque dignissim <br/>sollicitudin nisi</span>
 								</span>
                         </a>
-                        <a href="/selectBook?book=${book.getId()}" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span
+                        <a href="/selectBook?book=${book.getId()}" class="buy-btn">BUY NOW <span class="price"><span
+                                class="low">$</span>22<span
                                 class="high">00</span></span></a>
                     </div>
                 </li>
@@ -137,7 +119,8 @@
                     <li>
                         <div class="produ   ct">
                             <a href="/selectBook?book=${book.getId()}">
-                                <img src="/download?filename=${book.getCoverGeneratedFileName()}" alt="${book.getCoverOriginalFileName()}" loading="lazy"/>
+                                <img src="/download?filename=${book.getCoverGeneratedFileName()}"
+                                     alt="${book.getCoverOriginalFileName()}" loading="lazy"/>
                                 <span class="book-name">${book.getTitle()}</span>
                                 <span class="author">by ${book.getAuthor()}</span>
                                 <span class="price"><span class="low">$</span>35<span class="high">00</span></span>
@@ -200,6 +183,11 @@
 <script type="text/javascript" src="/resources/js/jquery.jcarousel.min.js"></script>
 <script type="text/javascript" src="/resources/js/png-fix.js"></script>
 <script type="text/javascript" src="/resources/js/functions.js"></script>
+<script type="text/javascript" src="/resources/js/main.js"></script>
+<script type="text/javascript" src="/resources/js/popper.min.js"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 </html>

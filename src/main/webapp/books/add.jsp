@@ -104,7 +104,7 @@
                     <label class="col-md-4 control-label" for="singlebutton">BUTTONS</label>
                     <div class="col-md-4">
                         <button id="singlebutton" name="singlebutton" class="btn btn-success">SAVE BOOK</button>  ||
-                        <a href="/main" class="btn btn-danger">Back</a>
+                        <a href="/user/home" class="btn btn-danger">Back</a>
                     </div>
                 </div>
 

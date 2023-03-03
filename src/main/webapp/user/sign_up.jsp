@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ taglib prefix="c" uri="jakarta.tags.core" %>--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Responsive Loginform</title>
@@ -74,6 +77,11 @@
                                            placeholder="Create your Username">
                                 </div>
                                 <div class="group">
+                                    <label for="email" class="label">Email Address</label>
+                                    <input name="email" id="email" type="text" class="input"
+                                           placeholder="Enter your email address">
+                                </div>
+                                <div class="group">
                                     <label for="password" class="label">Password</label>
                                     <input name="password" id="password" type="password" class="input"
                                            data-type="password" placeholder="Create your password">
@@ -84,13 +92,12 @@
                                            class="input" data-type="password" placeholder="Repeat your password">
                                 </div>
                                 <div class="group">
-                                    <label for="email" class="label">Email Address</label>
-                                    <input name="email" id="email" type="text" class="input"
-                                           placeholder="Enter your email address">
-                                </div>
-                                <div class="group">
                                     <input type="submit" class="button" value="Sign Up">
                                 </div>
+                                    <c:if test="${error!=null}">
+                                        <c:out value="${error}"/>
+                                        <c:redirect url = "/register"/>
+                                    </c:if>
                                 <div class="hr"></div>
                                 <div class="foot">
                                     <label for="tab-1">Already Member?</label>

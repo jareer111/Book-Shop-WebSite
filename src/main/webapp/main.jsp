@@ -68,7 +68,6 @@
                             alert("Category added successfully!");
                         }
                     </script>
-<%--                    <button type="submit" class="btn btn-success">Save Category</button>--%>
                 </form>
             </div>
         </div>

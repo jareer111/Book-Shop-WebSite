@@ -1,53 +1,53 @@
 <%--
   Created by IntelliJ IDEA.
   User: javohir
-  Date: 09/02/2023
-  Time: 12:13
+  Date: 08/02/2023
+  Time: 10:58
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <html>
 <head>
-    <title>Add Category</title>
+    <title>Add category</title>
 </head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="/resources/css/book-add.css">
+
 <body>
+<form action="/category/add" class="form-horizontal" method="post" >
+    <fieldset>
 
+        <!-- Form Name -->
+        <div class="main_header">
+            <h1>ADD CATEGORY</h1>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="category_name">CATEGORY NAME</label>
+            <div class="col-md-4">
+                <input id="category_name" name="category_name" placeholder="CATEGORY NAME" class="form-control input-md"
+                       required
+                       type="text">
+            </div>
+        </div>
 
-<div class="modal fade" id="addModalToggle" aria-hidden="true" aria-labelledby="addModalToggleLabel"
-     tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addModalToggleLabel">Create Student</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="/students/add">
-          <div class="mb-3">
-            <label for="firstName" class="form-label">Student First Name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName">
-          </div>
-          <div class="mb-3">
-            <label for="lastName" class="form-label">Student Last Name</label>
-            <input type="text" class="form-control" id="lastName" name="lastName">
-          </div>
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton">BUTTONS</label>
+            <div class="col-md-4">
+                <button id="singlebutton" name="singlebutton" class="btn btn-success">SAVE CATEGORY</button>
+                ||
+                <a href="/user/home" class="btn btn-danger">Back</a>
+            </div>
+        </div>
 
-          <div class="mb-3">
-            <label for="age" class="form-label">Student Age</label>
-            <input type="number" class="form-control" id="age" name="age">
-          </div>
+    </fieldset>
+</form>
 
-          <button type="submit" class="btn btn-success">Save Student</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="/resources/js/main.js"></script>
-<script src="/resources/js/popper.min.js"></script>
-<script src="/resources/js/bootstrap.min.js"></script>
-
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 </body>
 </html>

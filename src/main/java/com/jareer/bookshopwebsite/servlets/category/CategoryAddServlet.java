@@ -23,14 +23,14 @@ public class CategoryAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         CategoryDAO categoryDAO = CategoryDAO.getInstance();
-        String categoryName = request.getParameter("categoryName");
+        String categoryName = request.getParameter("category_name");
 
         Category category = Category.
                 builder().
                 name(categoryName).
                 build();
         categoryDAO.save(category);
-        response.sendRedirect("/main");
+        response.sendRedirect("/user/main");
 
     }
 }
