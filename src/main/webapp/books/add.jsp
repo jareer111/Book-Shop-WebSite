@@ -15,7 +15,7 @@
 <body >
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<link rel="stylesheet" href="/books/book_resources/add.css">
+<link rel="stylesheet" href="/resources/css/book-add.css">
 <!------ Include the above in your HEAD tag ---------->
 
 <form class="form-horizontal" method="post" enctype="multipart/form-data">

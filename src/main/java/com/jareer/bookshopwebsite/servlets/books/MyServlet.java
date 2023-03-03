@@ -2,14 +2,16 @@ package com.jareer.bookshopwebsite.servlets.books;
 
 import com.jareer.bookshopwebsite.dao.BookDAO;
 import com.jareer.bookshopwebsite.dto.BookDetailsDTO;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "MyServlet", value = "/addition/home")
+@WebServlet(name = "MyServlet", value = "/user/home")
 public class MyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,7 +19,7 @@ public class MyServlet extends HttpServlet {
         List<BookDetailsDTO> all = bookDAO.findAll();
 
         request.setAttribute("books", all);
-        request.getRequestDispatcher("/addition/home2.jsp").forward(request, response);
+        request.getRequestDispatcher("/books/home-page.jsp").forward(request, response);
     }
 
     @Override

@@ -5,14 +5,9 @@
 <head>
     <title>LIBRARY</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <link rel="shortcut icon" href="css/images/favicon.ico"/>
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all"/>
-    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
-    <!--[if IE 6]>
-    <script type="text/javascript" src="js/png-fix.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="js/functions.js"></script>
+    <link rel="shortcut icon" href="/resources/img/home-images/favicon.ico"/>
+    <link rel="stylesheet" href="/resources/css/home-style.css" type="text/css" media="all"/>
+
 </head>
 <body>
 <!-- Header -->
@@ -34,7 +29,7 @@
     <!-- Login-details -->
     <div id="login-details">
         <p>Welcome, <a href="#" id="user">Guest</a> .</p>
-        <p><a href="#" class="cart"><img src="css/images/cart-icon.png" alt=""/></a>Shopping Cart (0) <a href="#"
+        <p><a href="#" class="cart"><img src="/resources/img/home-images/cart-icon.png" alt=""/></a>Shopping Cart (0) <a href="#"
                                                                                                          class="sum">$0.00</a>
         </p>
     </div>
@@ -119,7 +114,7 @@
 								<span class="holder">
                                  <div class="image">
                                   <img src="/download?filename=${book.getCoverGeneratedFileName()}" width="180" height="300"
-                                  class="card-img-top" alt="${book.getCoverOriginalFileName()}" loading="lazy"/>
+                                       class="card-img-top" alt="${book.getCoverOriginalFileName()}" loading="lazy"/>
                                  </div>
                                     <span class="book-name">${book.getTitle()}</span>
 									<span class="author">by ${book.getAuthor()}</span>
@@ -130,8 +125,8 @@
                                 class="high">00</span></span></a>
                     </div>
                 </li>
-             </c:forEach>
-            <!-- End Products -->
+                </c:forEach>
+                <!-- End Products -->
         </div>
         <div class="cl">&nbsp;</div>
         <!-- Best-sellers -->
@@ -139,16 +134,16 @@
             <h3>Best Sellers</h3>
             <ul>
                 <c:forEach items="${books}" var="book">
-                <li>
-                    <div class="produ   ct">
-                        <a href="/selectBook?book=${book.getId()}">
-                            <img src="/download?filename=${book.getCoverGeneratedFileName()}" alt="${book.getCoverOriginalFileName()}" loading="lazy"/>
-                            <span class="book-name">${book.getTitle()}</span>
-                            <span class="author">by ${book.getAuthor()}</span>
-                            <span class="price"><span class="low">$</span>35<span class="high">00</span></span>
-                        </a>
-                    </div>
-                </li>
+                    <li>
+                        <div class="produ   ct">
+                            <a href="/selectBook?book=${book.getId()}">
+                                <img src="/download?filename=${book.getCoverGeneratedFileName()}" alt="${book.getCoverOriginalFileName()}" loading="lazy"/>
+                                <span class="book-name">${book.getTitle()}</span>
+                                <span class="author">by ${book.getAuthor()}</span>
+                                <span class="price"><span class="low">$</span>35<span class="high">00</span></span>
+                            </a>
+                        </div>
+                    </li>
                 </c:forEach>
             </ul>
         </div>
@@ -199,5 +194,12 @@
     </div>
 </div>
 <!-- End Footer -->
+
+
+<script type="text/javascript" src="/resources/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="/resources/js/png-fix.js"></script>
+<script type="text/javascript" src="/resources/js/functions.js"></script>
+
 </body>
 </html>
