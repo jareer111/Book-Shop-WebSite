@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +22,7 @@ public class BookDetailsDTO {
     private int downloads;
     private String category;
     private String publisher;
+    private LocalDateTime publishedDate;
     private String coverOriginalFileName;
     private String coverGeneratedFileName;
     private String coverFileSize;

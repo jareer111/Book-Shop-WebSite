@@ -14,7 +14,7 @@ import java.nio.file.Path;
 
 @WebServlet(name = "DownloadServlet", value = "/download")
 public class DownloadServlet extends HttpServlet {
-    private static final Path rootPath = Path.of("/home/javohir/apps/library/upload");
+    private static final Path rootPath = Path.of(System.getProperty("user.home"), "/apps/library/upload");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

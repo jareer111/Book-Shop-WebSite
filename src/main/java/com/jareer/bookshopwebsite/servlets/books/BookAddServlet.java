@@ -71,7 +71,7 @@ public class BookAddServlet extends HttpServlet {
                 documentId(fileDocument.getId()).
                 build();
         bookDAO.save(book);
-        resp.sendRedirect("/main");
+        resp.sendRedirect("/user/home");
 
     }
 

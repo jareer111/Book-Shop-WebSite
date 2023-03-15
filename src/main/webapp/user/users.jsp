@@ -115,17 +115,17 @@
                 <form method="post" action="/users/update/">
                     <input type="hidden" id="u_id" name="id" />
                     <div class="mb-3">
-                        <label for="u_firstName" class="form-label">User First Name</label>
-                        <input type="text" class="form-control" id="u_firstName" name="firstName">
+                        <label for="u_username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="u_username" name="username">
                     </div>
                     <div class="mb-3">
-                        <label for="u_lastName" class="form-label">User Last Name</label>
-                        <input type="text" class="form-control" id="u_lastName" name="lastName">
+                        <label for="u_email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="u_email" name="email">
                     </div>
 
                     <div class="mb-3">
-                        <label for="u_age" class="form-label">User Age</label>
-                        <input type="number" class="form-control" id="u_age" name="age">
+                        <label for="u_role" class="form-label">Role</label>
+                        <input type="text" class="form-control" id="u_role" name="role">
                     </div>
                     <button type="submit" class="btn btn-success">Update User</button>
                 </form>

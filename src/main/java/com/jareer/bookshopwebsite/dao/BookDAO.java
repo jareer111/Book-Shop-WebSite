@@ -7,10 +7,7 @@ import com.jareer.bookshopwebsite.dto.DTO;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class BookDAO extends DAO<Book, Integer> {
             insert into library1.book(title,author,publisher,published_date,created_at,category_id,description, cover_id,document_id ) values (?, ?, ?, ?, ?, ?, ? ,? ,?);""";
 
     private static final String SELECT_ALL = """
-            select b.id, b.title, b.author,b.description, b.views,b.likes, b.dislikes, b.downloads,b.publisher,
+            select b.id, b.title, b.author,b.description, b.views,b.likes, b.dislikes, b.downloads,b.publisher,b.published_date,
              d.originalFileName as coverOriginalFileName ,d.generatedFileName as coverGeneratedFileName,d.fileSize as coverFileSize, 
              d2.originalFileName as documentOriginalFileName ,d2.generatedFileName as documentGeneratedFileName,d2.fileSize as documentFileSize,
               c.name as category 
@@ -29,6 +26,18 @@ public class BookDAO extends DAO<Book, Integer> {
              inner join document d2 on b.document_id = d2.id 
              inner join category c on b.category_id = c.id;
                         """;
+    private static final String SELECT_BOOKS_BY_ID = """
+            select b.id, b.title, b.author,b.description, b.views,b.likes, b.dislikes, b.downloads,b.publisher,b.published_date,
+                         d.originalFileName as coverOriginalFileName ,d.generatedFileName as coverGeneratedFileName,d.fileSize as coverFileSize,
+                         d2.originalFileName as documentOriginalFileName ,d2.generatedFileName as documentGeneratedFileName,d2.fileSize as documentFileSize,
+                          c.name as category
+                          from book b 
+                         inner join document d on b.cover_id = d.id
+                         inner join document d2 on b.document_id = d2.id
+                         inner join category c on b.category_id = c.id 
+                         WHERE b.id = ?
+                         ;
+            """;
     private static BookDAO instance;
 
     @Override
@@ -100,6 +109,7 @@ public class BookDAO extends DAO<Book, Integer> {
                         views(resultSet.getInt("views")).
                         category(resultSet.getString("category")).
                         publisher(resultSet.getString("publisher")).
+                        publishedDate(resultSet.getTimestamp("published_date").toLocalDateTime()).
                         coverOriginalFileName(resultSet.getString("coverOriginalFileName")).
                         coverGeneratedFileName(resultSet.getString("coverGeneratedFileName")).
                         coverFileSize((resultSet.getLong("coverFileSize") / 2 << 20) + "MB").
@@ -112,5 +122,42 @@ public class BookDAO extends DAO<Book, Integer> {
             throw new RuntimeException(e);
         }
         return books;
+    }
+
+    public BookDetailsDTO getBookById(int i) {
+
+        Connection connection = getConnection();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BOOKS_BY_ID)) {
+            preparedStatement.setInt(1, i);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            BookDetailsDTO bookDetailsDTO=null;
+            while (resultSet.next()) {
+                bookDetailsDTO = BookDetailsDTO.builder().
+                        id(resultSet.getInt("id")).
+                        title(resultSet.getString("title")).
+                        author(resultSet.getString("author")).
+                        description(resultSet.getString("description")).
+                        likes(resultSet.getInt("likes")).
+                        dislikes(resultSet.getInt("dislikes")).
+                        views(resultSet.getInt("views")).
+                        category(resultSet.getString("category")).
+                        publisher(resultSet.getString("publisher")).
+                        publishedDate(resultSet.getTimestamp("published_date").toLocalDateTime()).
+                        coverOriginalFileName(resultSet.getString("coverOriginalFileName")).
+                        coverGeneratedFileName(resultSet.getString("coverGeneratedFileName")).
+                        coverFileSize((resultSet.getLong("coverFileSize") / 2 << 20) + "MB").
+                        documentOriginalFileName(resultSet.getString("documentOriginalFileName")).
+                        documentGeneratedFileName(resultSet.getString("documentGeneratedFileName")).
+                        documentFileSize((resultSet.getLong("documentFileSize") / 2 << 20) + "MB").
+                        build();
+            }
+            return bookDetailsDTO;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
