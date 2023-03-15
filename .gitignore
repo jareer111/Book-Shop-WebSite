@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/out/artifacts/unnamed/resources/img/1164598.jpg
+/out/artifacts/unnamed/books/add.jsp
+/.idea/jpa-buddy.xml
