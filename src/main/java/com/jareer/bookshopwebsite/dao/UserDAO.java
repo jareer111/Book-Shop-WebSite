@@ -14,8 +14,11 @@ import java.util.StringJoiner;
 
 public class UserDAO extends DAO<Users, Integer> {
     public static final String FIND_ALL_QUERY = """
-    select * from library1.users order by username offset ? limit ? """;
-    public static final String INSERT_USER = "insert into library1.users(username,password,email,role,is_active)values (?,?,?,?,?) returning id;";
+    select * from library1.users order by username offset ? limit ? 
+         """;
+    public static final String INSERT_USER = """
+         insert into library1.users(username,password,email,role,is_active)values (?,?,?,?,?) returning id;
+         """;
     public static final String SELECT_CHECK_USER = "select * from library1.users where is_active = true AND email = ? and password = ?;";
     public static final String DELETE_USER_QUERY = "update library1.users set is_active = false where id = ?;";
     public static final String TOTAL_USER = "select count(0) from library1.users ;";
